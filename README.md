@@ -2,3 +2,5 @@
 [![Actions Status](https://github.com/YuriNotPickle/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/YuriNotPickle/frontend-project-44/actions)
 
 <a href="https://codeclimate.com/github/YuriNotPickle/frontend-project-44/maintainability"><img src="https://api.codeclimate.com/v1/badges/b8cc55f5cf1e79d2eeb7/maintainability" /></a>
+
+https://asciinema.org/a/kjbOlK5Ic42ds7tMwjBuokhTU

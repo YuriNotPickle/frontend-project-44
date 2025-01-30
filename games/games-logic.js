@@ -15,8 +15,15 @@ export function generateNumber() {
   return (Math.random() * 100).toFixed();
 }
 
+function choseCompareType(val1, val2) {
+  if (Number.isNaN(+val1) || Number.isNaN(+val2)) {
+    return val1 === val2;
+  }
+  return +val1 === +val2;
+}
+
 export function logResult({ correctAnswer, answer, name }) {
-  if (+correctAnswer === +answer) {
+  if (choseCompareType(correctAnswer, answer)) {
     console.log('Correct!');
   } else {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
@@ -33,5 +40,5 @@ export function checkIsAnswerCorrect({
 
   logResult({ correctAnswer, answer, name });
 
-  return +correctAnswer === +answer;
+  return choseCompareType(correctAnswer, answer);
 }

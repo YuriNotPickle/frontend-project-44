@@ -27,7 +27,7 @@ function brainProgression(name, attempt = 0) {
     return true;
   }
   if (attempt === 0) {
-    console.log('Find the greatest common divisor of given numbers');
+    console.log('What number is missing in the progression?');
   }
 
   const progression = generateProgression();

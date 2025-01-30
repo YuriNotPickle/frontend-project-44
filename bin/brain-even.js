@@ -1,36 +1,31 @@
 #!/usr/bin/env node
-import { getAnswer, getName } from '../src/cli.js';
+import { getAnswer } from '../src/cli.js';
+import startGame, { checkIsAnswerCorrect, generateNumber, successMessage } from '../games/games-logic.js';
 
 function getCorrectAnswer(nmb) {
   return nmb % 2 === 0 ? 'yes' : 'no';
 }
-function checkIsAnswerCorrect(answer, nmb) {
-  const correctAnswer = getCorrectAnswer(nmb);
-  if (correctAnswer === answer) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+function brainEven(name, attempt = 0) {
+  if (attempt > 2) {
+    successMessage(name);
+    return true;
   }
 
-  return correctAnswer === answer;
-}
-export default function brainEven(attempt = 0) {
-  if (attempt > 3) return true;
-
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
-  const number = (Math.random() * 1000).toFixed();
+  const number = generateNumber();
   console.log(`Question: ${number}`);
 
-  if (checkIsAnswerCorrect(getAnswer(), number)) {
-    brainEven(attempt + 1);
+  if (checkIsAnswerCorrect({
+    answer: getAnswer(),
+    question: number,
+    name,
+    getAnswerFn: getCorrectAnswer,
+  })) {
+    brainEven(name, attempt + 1);
   } else {
-    brainEven(0);
+    brainEven(name, 0);
   }
   return null;
 }
 
-console.log('Welcome to the Brain Games!');
-const name = getName();
-console.log(`Hello, ${name}!`);
-brainEven();
-console.log(`Congratulations, ${name}!`);
+startGame(brainEven);

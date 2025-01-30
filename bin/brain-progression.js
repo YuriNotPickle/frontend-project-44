@@ -26,8 +26,10 @@ function brainProgression(name, attempt = 0) {
     successMessage(name);
     return true;
   }
+  if (attempt === 0) {
+    console.log('Find the greatest common divisor of given numbers');
+  }
 
-  console.log('Find the greatest common divisor of given numbers');
   const progression = generateProgression();
   const { question } = progression;
   console.log(`Question: ${question}`);
@@ -40,7 +42,7 @@ function brainProgression(name, attempt = 0) {
   })) {
     brainProgression(name, attempt + 1);
   } else {
-    brainProgression(name, 0);
+    return null;
   }
   return null;
 }

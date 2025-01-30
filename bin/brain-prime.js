@@ -24,8 +24,10 @@ function brainPrime(name, attempt = 0) {
     successMessage(name);
     return true;
   }
+  if (attempt === 0) {
+    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+  }
 
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
   const number = generateNumber();
   console.log(`Question: ${number}`);
 
@@ -37,7 +39,7 @@ function brainPrime(name, attempt = 0) {
   })) {
     brainPrime(name, attempt + 1);
   } else {
-    brainPrime(name, 0);
+    return null;
   }
   return null;
 }

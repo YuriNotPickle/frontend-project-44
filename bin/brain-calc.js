@@ -13,11 +13,13 @@ function brainCalc(name, attempt = 0) {
     successMessage(name);
     return true;
   }
+  if (attempt === 0) {
+    console.log('What is the result of the expression?');
+  }
 
   const operators = ['+', '-', '*'];
   const getRandomOperator = operators[Math.floor(Math.random() * 3)];
 
-  console.log('What is the result of the expression?');
   const question = `${generateNumber()} ${getRandomOperator} ${generateNumber()}`;
   console.log(`Question: ${question}`);
 
@@ -29,7 +31,7 @@ function brainCalc(name, attempt = 0) {
   })) {
     brainCalc(name, attempt + 1);
   } else {
-    brainCalc(name, 0);
+    return null;
   }
   return null;
 }

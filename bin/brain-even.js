@@ -10,8 +10,10 @@ function brainEven(name, attempt = 0) {
     successMessage(name);
     return true;
   }
+  if (attempt === 0) {
+    console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  }
 
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
   const number = generateNumber();
   console.log(`Question: ${number}`);
 
@@ -23,7 +25,7 @@ function brainEven(name, attempt = 0) {
   })) {
     brainEven(name, attempt + 1);
   } else {
-    brainEven(name, 0);
+    return null;
   }
   return null;
 }

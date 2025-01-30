@@ -20,8 +20,10 @@ function brainGcd(name, attempt = 0) {
     successMessage(name);
     return true;
   }
+  if (attempt === 0) {
+    console.log('Find the greatest common divisor of given numbers');
+  }
 
-  console.log('Find the greatest common divisor of given numbers');
   const question = `${generateNumber()} ${generateNumber()}`;
   console.log(`Question: ${question}`);
 
@@ -33,7 +35,7 @@ function brainGcd(name, attempt = 0) {
   })) {
     brainGcd(name, attempt + 1);
   } else {
-    brainGcd(name, 0);
+    return null;
   }
   return null;
 }

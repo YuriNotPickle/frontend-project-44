@@ -50,7 +50,7 @@ export default function startGame(game) {
     }
 
     const question = gamesConstants[game].question().toString();
-    console.log(question);
+    console.log('Question: ' + question);
 
     if (checkIsAnswerCorrect({
       question,

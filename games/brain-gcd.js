@@ -15,5 +15,5 @@ function getCorrectAnswer(question) {
 export default {
   question: () => `${generateNumber()} ${generateNumber()}`,
   correctAnswer: getCorrectAnswer,
-  message: 'What is the result of the expression?',
+  message: 'Find the greatest common divisor of given numbers.',
 };

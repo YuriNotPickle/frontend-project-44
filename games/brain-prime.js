@@ -1,6 +1,6 @@
 import { generateNumber } from '../src/cli.js';
 
-function isPrime(num) {
+function checkIsPrime(num) {
   if (num <= 1) return false;
   if (num === 2) return true;
   if (num % 2 === 0) return false;
@@ -14,7 +14,7 @@ function isPrime(num) {
 }
 
 function getCorrectAnswer(nmb) {
-  return isPrime(nmb) ? 'yes' : 'no';
+  return checkIsPrime(nmb) ? 'yes' : 'no';
 }
 
 export default {

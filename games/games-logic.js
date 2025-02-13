@@ -13,7 +13,7 @@ export const gamesConstants = {
   brainGcd,
 };
 
-export function successMessage(name) {
+export function sendSuccessMessage(name) {
   console.log(`Congratulations, ${name}!`);
 }
 
@@ -63,7 +63,7 @@ export default function startGame(game) {
       return null;
     }
     if (attempt > 2) {
-      successMessage(name);
+      sendSuccessMessage(name);
       return true;
     }
   }

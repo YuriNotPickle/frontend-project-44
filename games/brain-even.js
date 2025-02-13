@@ -1,10 +1,10 @@
 import { generateNumber } from '../src/cli.js';
 
-function isEven(nmb) {
+function checkIsEven(nmb) {
   return nmb % 2 === 0;
 }
 function getCorrectAnswer(nmb) {
-  return isEven(nmb) ? 'yes' : 'no';
+  return checkIsEven(nmb) ? 'yes' : 'no';
 }
 
 export default {

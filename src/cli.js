@@ -10,3 +10,7 @@ export function getName() {
 export function getAnswer() {
   return readlineSync.question('Your answer: ');
 }
+
+export function generateNumber(genVal = 100) {
+  return Math.floor(Math.random() * genVal) + 1;
+}

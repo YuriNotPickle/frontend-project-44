@@ -1,29 +1,24 @@
-import { getName } from '../src/cli.js';
+import { getAnswer, getName } from '../src/cli.js';
+import brainCalc from './brain-calc.js';
+import brainPrime from './brain-prime.js';
+import brainEven from './brain-even.js';
+import brainProgression from './brain-progression.js';
+import brainGcd from './brain-gcd.js';
 
-export default function startGame(game) {
-  console.log('Welcome to the Brain Games!');
-  const name = getName();
-  console.log(`Hello, ${name}!`);
-  game(name);
-}
+export const gamesConstants = {
+  brainCalc,
+  brainPrime,
+  brainEven,
+  brainProgression,
+  brainGcd,
+};
 
 export function successMessage(name) {
   console.log(`Congratulations, ${name}!`);
 }
 
-export function generateNumber() {
-  return (Math.random() * 100).toFixed();
-}
-
-function choseCompareType(val1, val2) {
-  if (Number.isNaN(+val1) || Number.isNaN(+val2)) {
-    return val1 === val2;
-  }
-  return +val1 === +val2;
-}
-
 export function logResult({ correctAnswer, answer, name }) {
-  if (choseCompareType(correctAnswer, answer)) {
+  if (correctAnswer === answer) {
     console.log('Correct!');
   } else {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
@@ -36,9 +31,41 @@ export function logResult({ correctAnswer, answer, name }) {
 export function checkIsAnswerCorrect({
   answer, question, name, getAnswerFn,
 }) {
-  const correctAnswer = getAnswerFn(question);
+  const correctAnswer = String(getAnswerFn(question));
 
   logResult({ correctAnswer, answer, name });
 
-  return choseCompareType(correctAnswer, answer);
+  return correctAnswer === answer;
+}
+
+export default function startGame(game) {
+  console.log('Welcome to the Brain Games!');
+  const name = getName();
+  console.log(`Hello, ${name}!`);
+  if (!game) return null;
+
+  for (let attempt = 0; attempt < 3;) {
+    if (attempt === 0) {
+      console.log(gamesConstants[game].message);
+    }
+
+    const question = gamesConstants[game].question().toString();
+    console.log(question);
+
+    if (checkIsAnswerCorrect({
+      question,
+      name,
+      getAnswerFn: gamesConstants[game].correctAnswer,
+      answer: getAnswer(),
+    })) {
+      attempt += 1;
+    } else {
+      return null;
+    }
+    if (attempt > 2) {
+      successMessage(name);
+      return true;
+    }
+  }
+  return null;
 }

@@ -11,9 +11,12 @@ function generateProgression() {
   const step = generateNumber(10);
   const length = 10;
 
-  const progression = Array.from({ length }, (_, i) => start + i * step);
+  return Array.from({ length }, (_, i) => start + i * step);
+}
 
-  const hiddenIndex = Math.floor(Math.random() * length);
+function generateQuestion() {
+  const progression = generateProgression();
+  const hiddenIndex = Math.floor(Math.random() * progression.length);
   correctAnswer = progression[hiddenIndex];
   progression[hiddenIndex] = '..';
 
@@ -21,7 +24,7 @@ function generateProgression() {
 }
 
 export default {
-  question: generateProgression,
+  question: generateQuestion,
   correctAnswer: getCorrectAnswer,
   message: 'What number is missing in the progression?',
 };

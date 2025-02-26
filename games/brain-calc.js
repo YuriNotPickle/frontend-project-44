@@ -7,6 +7,19 @@ function getQuestion() {
   return `${generateNumber()} ${currentOperator} ${generateNumber()}`;
 }
 
+function calculateResult(operand1, operator, operand2) {
+  switch (operator) {
+    case '+':
+      return operand1 + operand2;
+    case '-':
+      return operand1 - operand2;
+    case '*':
+      return operand1 * operand2;
+    default:
+      throw new Error('Неизвестный оператор');
+  }
+}
+
 function getCorrectAnswer(question) {
   const formatedQuestion = question.replace(/\s+/g, '');
 
@@ -21,16 +34,7 @@ function getCorrectAnswer(question) {
   const operator = match[2];
   const operand2 = parseFloat(match[3]);
 
-  switch (operator) {
-    case '+':
-      return operand1 + operand2;
-    case '-':
-      return operand1 - operand2;
-    case '*':
-      return operand1 * operand2;
-    default:
-      throw new Error('Неизвестный оператор');
-  }
+  return calculateResult(operand1, operator, operand2);
 }
 
 export default {
